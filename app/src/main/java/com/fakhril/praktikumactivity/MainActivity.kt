@@ -1,5 +1,7 @@
 package com.fakhril.praktikumactivity
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -15,6 +17,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var edtLength: EditText
     private lateinit var btnCalculate: Button
     private lateinit var tvResult: TextView
+
 
     companion object {
         private const val STATE_RESULT = "state_result"
@@ -34,7 +37,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         edtLength = findViewById(R.id.edt_length)
         btnCalculate = findViewById(R.id.btn_calculate)
         tvResult = findViewById(R.id.tv_result)
+        val btnMove: Button = findViewById(R.id.btn_move)
 
+        btnMove.setOnClickListener(this)
         btnCalculate.setOnClickListener(this)
 
         if (savedInstanceState != null){
@@ -91,6 +96,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 var volume = length.toInt() * width.toInt() * height.toInt();
                 tvResult.setText(volume.toString())
             }
+        }
+        if (v?.id == R.id.btn_move){
+            val moveIntent = Intent(this@MainActivity, Biodata ::class.java)
+            startActivity(moveIntent)
         }
     }
 

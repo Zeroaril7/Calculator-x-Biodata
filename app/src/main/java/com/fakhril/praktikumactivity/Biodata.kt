@@ -1,8 +1,10 @@
 package com.fakhril.praktikumactivity
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.text.method.MovementMethod
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -19,6 +21,7 @@ class Biodata : AppCompatActivity(), View.OnClickListener {
     private lateinit var result: TextView
     private lateinit var btn_submit: Button
     private lateinit var btn_date: Button
+    private lateinit var btn_move:Button
 
     companion object {
         private const val STATE_RESULT = "state_result"
@@ -35,9 +38,12 @@ class Biodata : AppCompatActivity(), View.OnClickListener {
         result = findViewById(R.id.result)
         btn_submit = findViewById(R.id.btn_submit)
         btn_date = findViewById(R.id.btn_date)
+        btn_move = findViewById(R.id.move)
 
         btn_date.setOnClickListener(this);
         btn_submit.setOnClickListener(this)
+        btn_move.setOnClickListener(this)
+
 
         if (savedInstanceState != null){
             val hasil = savedInstanceState.getString(STATE_RESULT) as String
@@ -119,6 +125,11 @@ class Biodata : AppCompatActivity(), View.OnClickListener {
                 mDay
             )
             datePickerDialog.show()
+        }
+
+        if (v?.id == R.id.move){
+            val moveIntent = Intent(this@Biodata, MainActivity::class.java)
+            startActivity(moveIntent)
         }
     }
 }
